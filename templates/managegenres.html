@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Genres</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<h1>Manage Genres</h1>
+
+    <p>If you wish to go back to the homepage, click the link below:</p>
+
+<a href="/homepage">Back to Home</a>
+
+<h2>Add new Genre </h2>
+<form method="POST" action ="/managegenres">
+    <label for="genre_name">Genre Name</label>
+    <input type="text" id="genre_name" name="genre_name" required>
+    <input type="submit" value="Add Genre">
+
+</form>
+
+<!-- Display error message -->
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<!-- List of Current Genres -->
+<h2>Current Genres</h2>
+<table>
+       <tr>
+        <th>Genre ID</th>
+        <th>Genre Name</th>
+    </tr>
+    {% for genre in genres %}
+    <tr>
+        <td>{{ genre[0] }}</td>
+        <td>{{ genre[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
+

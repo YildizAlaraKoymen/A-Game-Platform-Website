@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Published Games</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<script>
+
+</script>
+<h1>Published Games:</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Genres</th>
+            <th>Delete</th>
+        </tr>
+        {% for game in games %}
+        <tr>
+            <td>{{ game[1] }}</td>
+            <td>{{ game[2] }}</td>
+            <td>{{ game[3] }}</td>
+            <td>
+                <form method="POST" action="/delete_game">
+                    <input type="hidden" name="game_id" value="{{ game[0] }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+<h2>Add a New Game</h2>
+
+<form method="POST" action ="/publishedgames">
+
+    <b><label for="title">Title</label></b>
+    <input type="text" name="title" id="title" required/><br/>
+
+    <b><label for="price">Price</label></b>
+    <input type="text" name="price" id="price" required/><br/>
+
+    <b><p>Genre:</p></b>
+    <div class="checkbox-group">
+        <label for="adventure">Adventure</label>
+        <input type="checkbox" name="genre[]" id="adventure" value="Adventure"/><br/>
+        <label for="action">Action</label>
+        <input type="checkbox" name="genre[]" id="action" value="Action"/><br/>
+        <label for="sports">Sports</label>
+        <input type="checkbox" name="genre[]" id="sports" value="Sports"/><br/>
+        <label for="simulation">Simulation</label>
+        <input type="checkbox" name="genre[]" id="simulation" value="Simulation"/><br/>
+        <label for="platformer">Platformer</label>
+        <input type="checkbox" name="genre[]" id="platformer" value="Platformer"/><br/>
+        <label for="rpg">RPG</label>
+        <input type="checkbox" name="genre[]" id="rpg" value="RPG"/><br/>
+        <label for="fps">First-person shooter</label>
+        <input type="checkbox" name="genre[]" id="fps" value="First-person shooter"/><br/>
+        <label for="fighting">Fighting</label>
+        <input type="checkbox" name="genre[]" id="fighting" value="Fighting"/><br/>
+        <label for="rts">Real-time strategy</label>
+        <input type="checkbox" name="genre[]" id="rts" value="Real-time strategy"/><br/>
+        <label for="racing">Racing</label>
+        <input type="checkbox" name="genre[]" id="racing" value="Racing"/><br/>
+        <label for="puzzle">Puzzle</label>
+        <input type="checkbox" name="genre[]" id="puzzle" value="Puzzle"/><br/>
+        <label for="casual">Casual</label>
+        <input type="checkbox" name="genre[]" id="casual" value="Casual"/><br/>
+        <label for="strategy">Strategy game</label>
+        <input type="checkbox" name="genre[]" id="strategy" value="Strategy game"/><br/>
+        <label for="mmorpg">Massively multiplayer online role-playing</label>
+        <input type="checkbox" name="genre[]" id="mmorpg" value="Massively multiplayer online role-playing"/><br/>
+        <label for="stealth">Stealth</label>
+        <input type="checkbox" name="genre[]" id="stealth" value="Stealth"/><br/>
+        <label for="party">Party</label>
+        <input type="checkbox" name="genre[]" id="party" value="Party"/><br/>
+        <label for="survival">Survival</label>
+        <input type="checkbox" name="genre[]" id="survival" value="Survival"/><br/>
+        <label for="battle-royale">Battle Royale</label>
+        <input type="checkbox" name="genre[]" id="battle-royale" value="Battle Royale"/><br/>
+    </div><br/>
+
+
+    <b><label for="description">Description</label></b>
+    <input type="text" name="description" id="description"/><br/>
+
+    <b>Release:</b><br/>
+    <label for="FullRelease">Full Release</label>
+    <input type="radio" name="isFullRelease" id="FullRelease" value="FullRelease"/><br/>
+
+    <label for="LimitedRelease">Limited Release</label>
+    <input type="radio" name="isFullRelease" id="LimitedRelease" value="LimitedRelease"/><br/>
+
+   {% if error %}
+    <p style="color: red;">{{ error }}</p>  <!-- Display error message -->
+    {% endif %}
+
+  <br/><input type="submit" value="Register"/><br/>
+
+</form>
+
+<p>If you wish to go back to the homepage, click the link below:</p>
+<a href="/homepage">Back to Home</a>
+
+</body>
+</html>

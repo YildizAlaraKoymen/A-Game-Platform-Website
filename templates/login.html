@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Login </title>
+    <link rel="stylesheet" type="text/css" href="../../../OneDrive/Documents/Alara/university/Materials/fall%20-%202024%20-%202025/CNG_445/pythonProject/pythonProject/static/style.css">
+</head>
+<body>
+<form action="/login" method="POST">
+
+    <label for="username">Username</label>
+    <input type="text" name = "username" id="username" required/><br/>
+    <label for="pwd">Password</label>
+    <input type="password" name = "pwd" id="pwd" /><br/>
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>  <!-- Display error message -->
+    {% endif %}
+
+    <input type="submit" value="Login"/>
+
+</form>
+
+    <p>If you wish to go back to the homepage, click the link below:</p>
+
+    <a href="/homepage">Back to Home</a>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <div>
+        {% if 'username' in session %}
+            {% if isAdmin %}
+                <p>
+                    <a href="/homepage">Home Page</a> |
+                    <a href="/managegenres">Manage Genres</a> |
+                    <a href="/myprofile">My Profile</a> |
+                    <a href="/logout">Logout</a>
+                </p>
+            {% else %}
+                <p>
+                    <a href="/homepage">Home Page</a> |
+                    <a href="/publishedgames">Published Games</a> |
+                    <a href="/myprofile">My Profile</a> |
+                    <a href="/logout">Logout</a>
+                </p>
+            {% endif %}
+        {% else %}
+            <p>
+                <a href="/login">Login</a> |
+                <a href="/register">Register</a>
+            </p>
+        {% endif %}
+    </div>
+    <div>
+        <form method="POST" action="/homepage">
+            <input type="text" name="keyword" placeholder="Enter keyword" value="{{ keyword }}">
+            <select name="genre">                      <!-- For some reason gives tag start not closed error but works -->
+                <option value="All Genres" {% if selected_genre == "All Genres" %}selected{% endif %}>All Genres</option>
+                {% for genre in genres %}
+                    <option value="{{ genre }}" {% if selected_genre == genre %}selected{% endif %}>{{ genre }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" id = "search">Search</button>
+        </form>
+        <div>
+            {% if games_by_genre %}
+                {% for genre, games in games_by_genre.items() %}
+                    <h3>{{ genre }}</h3>
+                    {% if games %}
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Genre</th>
+                                <th>Details</th>
+                            </tr>
+                            {% for title, description in games %}
+                                <tr>
+                                    <td>{{ title }}</td>
+                                    <td>{{ description }}</td>
+                                    <td>{{ genre }}</td>
+                                    <td><a href="/game/{{ title|urlencode }}">See More</a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>--------------------------------------------------------------------------</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+
+                <p>--------------------------------------------------------------------------</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

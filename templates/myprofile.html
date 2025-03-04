@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/script.js"></script>
+</head>
+<body>
+
+<h1>My Profile</h1>
+
+<table>
+    <tr>
+        <th>Username</th>
+        <td>{{ user[0] }}</td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td>
+            <div class = "password-container">
+            <span id="password" class="hidden-password" data-shown="false" data-real-password="{{ user[1] }}">******</span>
+            <button id = "showPassword" onclick="togglePassword(this)">Show Password</button>
+            <form method="POST" action ="/myprofile">
+                <label for="passwordBox"></label>
+                <input type = "password" name = "pwd" id = "passwordBox" placeholder = "Enter new password">
+                <button id = "saveButton" onclick="savePassword()">Save</button>
+            </form>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td>{{ user[2] }}</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>{{ user[3] }}</td>
+    </tr>
+</table>
+
+<button onclick="changePassword()">Change Password</button>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>  <!-- Display error message -->
+{% endif %}
+
+<p>If you wish to go back to the homepage, click the link below:</p>
+
+<a href="/homepage">Back to Home</a>
+
+</body>
+</html>

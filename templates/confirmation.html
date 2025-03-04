@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <h1>Operation Successful!</h1>
+    {% if operation == "0" %}
+        <p>Your account has been successfully created. Welcome, {{ session['username'] }}!</p>
+    {% endif %}
+    {% if operation == "1" %}
+        <p>Your password has been successfully changed.</p>
+    {% endif %}
+
+    <p>If you wish to go back to the homepage, click the link below:</p>
+
+<a href="/homepage">Back to Home</a>
+
+</body>
+</html>

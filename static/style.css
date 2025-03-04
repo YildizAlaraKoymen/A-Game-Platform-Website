@@ -1,0 +1,22 @@
+body{
+    background-color: bisque;
+}
+
+table, th, td{
+    border: 1px solid;
+}
+
+.checkbox-group, p{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-group label{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#passwordBox, #saveButton, #results, #description{
+    display: none;
+}
